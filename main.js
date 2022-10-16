@@ -52,17 +52,4 @@ client.on('interactionCreate', async interaction => {
     }
 });
 
-client.on('guildCreate', guild => {
-    const embed = new MessageEmbed()
-        .setColor('#ffffff')
-        .setTitle('Hello there!')
-        .setDescription(`Mylo here! Thanks a lot for inviting me!\n
-        I'm a small, yet fully functional discord bot who uses ` + '(`/`)' + ` commands.\n
-        To get started, use the command ` + '`/setup`' + ` to first setup your server to me!`)
-        .setFooter(`Mylo's welcome message`)
-        .setTimestamp()
-    
-    guild.systemChannel.send({ embeds: [embed] })
-});
-
 client.login(token);
