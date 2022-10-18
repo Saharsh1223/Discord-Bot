@@ -13,7 +13,11 @@ const {
 } = require('./config.json');
 
 const client = new Client({
-    intents: [Intents.FLAGS.GUILDS]
+    intents: [
+        Intents.FLAGS.GUILDS,
+        Intents.FLAGS.GUILD_MESSAGES,
+        Intents.FLAGS.GUILD_MEMBERS
+    ]
 });
 
 client.commands = new Collection();
@@ -50,6 +54,15 @@ client.on('interactionCreate', async interaction => {
             ephemeral: true
         });
     }
+});
+
+client.on('guildMemberAdd', guildMember => {
+    setTimeout(() => {
+        const message = guildMember.guild.channels.cache.get('1031157995750567990').lastMessage
+        message.react('👋');
+    }, 500)
+
+    guildMember.roles.add(guildMember.guild.roles.cache.find(role => role.name === 'members'));
 });
 
 client.login(token);
